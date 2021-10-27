@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Url shortner</title>
+   
+  </head>
+
+  <body>
+    <h1>URL Shortner</h1>
+
+    <% if (locals.error) { %>
+    <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/" method="post">
+      <input type="url" name="url" autocomplete="off" id="url" placeholder="Enter the url here" />
+      <input type="submit" value="Shorten the url" />
+    </form>
+
+    <div class="short-url">
+      <% if (locals.short_url) { %>
+      <input id="copyText" type="text" value="<%= short_url %>" />
+      <button id="btnCopy" data-clipboard-target="#copyText">
+        Copy link
+      </button>
+
+      <% } %>
+      <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+      <script>
+        let cb = new ClipboardJS('#btnCopy');
+      </script>
+    </div>
+  </body>
+</html>
